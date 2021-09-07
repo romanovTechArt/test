@@ -15,7 +15,7 @@
 .board__column__columnHead_toDo {
     background-color: #626161;
     color: #dbdbdb;
-    padding: 19px;
+    padding:21px;
     border-radius: 5px;
     border-bottom: 1px solid gray;
     border-top: 1px solid gray;
@@ -60,7 +60,7 @@
 .board__column__columnHead_done {
     background-color: #ffffff;
     color: #464646;
-    padding: 19px;
+    padding: 21px;
     border-radius: 5px;
     border-bottom: 1px solid gray;
     border-top: 1px solid gray;
