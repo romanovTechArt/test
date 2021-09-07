@@ -3,16 +3,22 @@ import {DndProvider, useDrag, useDrop} from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import update from "immutability-helper";
 import './board.css'
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import {useTheme} from '@material-ui/core/styles';
 
 const tasksList = [
-    {_id: 1, title: "First Task", status: "plan", color: "urgent"},
-    {_id: 2, title: "Second Task", status: "plan", color: "bug-fix"},
-    {_id: 3, title: "Third Task", status: "plan", color: "urgent"},
-    {_id: 4, title: "Fourth Task", status: "toDo", color: "features"},
-    {_id: 5, title: "Fifth Task", status: "toDo", color: "urgent"},
-    {_id: 6, title: "Sixth Task", status: "code", color: "bug-fix"},
-    {_id: 7, title: "Seventh Task", status: "test", color: "urgent"},
-    {_id: 8, title: "Eighth Task", status: "create", color: "features"},
+    {_id: 1, title: "First Task", status: "plan", color: "urgent", text: "Additional Information"},
+    {_id: 2, title: "Second Task", status: "plan", color: "bug-fix", text: "Additional Information"},
+    {_id: 3, title: "Third Task", status: "plan", color: "urgent", text: "Additional Information"},
+    {_id: 4, title: "Fourth Task", status: "toDo", color: "features", text: "Additional Information"},
+    {_id: 5, title: "Fifth Task", status: "toDo", color: "urgent", text: "Additional Information"},
+    {_id: 6, title: "Sixth Task", status: "code", color: "bug-fix", text: "Additional Information"},
+    {_id: 7, title: "Seventh Task", status: "test", color: "urgent", text: "Additional Information"},
+    {_id: 8, title: "Eighth Task", status: "create", color: "features", text: "Additional Information"},
 ];
 
 const labelsMap = {
@@ -26,6 +32,20 @@ const labelsMap = {
 
 const Board = () => {
     const [tasks, setTaskStatus] = useState(tasksList);
+    const [currentItem, setCurrentItem] = useState(null)
+    const [open, setOpen] = React.useState(false);
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const handleClickOpen = (item) => {
+        setOpen(true);
+        setCurrentItem(item)
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
 
     const changeTaskStatus = useCallback(
         (id, status) => {
@@ -56,8 +76,8 @@ const Board = () => {
                                     .filter(item => item.status === "toDo")
                                     .map(item => (
                                         <KanbanItem key={item._id} id={item._id}>
-                                            <div
-                                                className={`board__column__columnHead__item board__column__columnHead__item_${item.color}`}>{item.title}</div>
+                                            <div onClick={() => handleClickOpen(item.title)}
+                                                 className={`board__column__columnHead__item board__column__columnHead__item_${item.color}`}>{item.title}</div>
                                         </KanbanItem>
                                     ))}
                             </div>
@@ -78,7 +98,7 @@ const Board = () => {
                                             .filter(item => item.status === "plan")
                                             .map(item => (
                                                 <KanbanItem key={item._id} id={item._id}>
-                                                    <div
+                                                    <div onClick={() => handleClickOpen(item.title)}
                                                         className={`board__column__columnHead__item board__column__columnHead__item_${item.color}`}>{item.title}</div>
                                                 </KanbanItem>
                                             ))}
@@ -97,7 +117,7 @@ const Board = () => {
                                             .filter(item => item.status === "code")
                                             .map(item => (
                                                 <KanbanItem key={item._id} id={item._id}>
-                                                    <div
+                                                    <div onClick={() => handleClickOpen(item.title)}
                                                         className={`board__column__columnHead__item board__column__columnHead__item_${item.color}`}>{item.title}</div>
                                                 </KanbanItem>
                                             ))}
@@ -116,7 +136,7 @@ const Board = () => {
                                             .filter(item => item.status === "create")
                                             .map(item => (
                                                 <KanbanItem key={item._id} id={item._id}>
-                                                    <div
+                                                    <div onClick={() => handleClickOpen(item.title)}
                                                         className={`board__column__columnHead__item board__column__columnHead__item_${item.color}`}>{item.title}</div>
                                                 </KanbanItem>
                                             ))}
@@ -135,7 +155,7 @@ const Board = () => {
                                             .filter(item => item.status === "test")
                                             .map(item => (
                                                 <KanbanItem key={item._id} id={item._id}>
-                                                    <div
+                                                    <div onClick={() => handleClickOpen(item.title)}
                                                         className={`board__column__columnHead__item board__column__columnHead__item_${item.color}`}>{item.title}</div>
                                                 </KanbanItem>
                                             ))}
@@ -156,7 +176,7 @@ const Board = () => {
                                     .filter(item => item.status === "done")
                                     .map(item => (
                                         <KanbanItem key={item._id} id={item._id}>
-                                            <div
+                                            <div onClick={() => handleClickOpen(item.title)}
                                                 className={`board__column__columnHead__item board__column__columnHead__item_${item.color}`}>{item.title}</div>
                                         </KanbanItem>
                                     ))}
@@ -165,6 +185,22 @@ const Board = () => {
                     </KanbanColumn>
                 </section>
             </DndProvider>
+            {open && (
+                <div>
+                    <Dialog
+                        fullScreen={fullScreen}
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="responsive-dialog-title"
+                    >
+                        <DialogContent>
+                            <DialogContentText>
+                                Additional information for {currentItem}
+                            </DialogContentText>
+                        </DialogContent>
+                    </Dialog>
+                </div>
+            )}
         </main>
     );
 };
