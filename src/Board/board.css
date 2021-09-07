@@ -1,0 +1,99 @@
+.board {
+    display: flex;
+    width: 98vw;
+    margin-bottom: 20px;
+}
+
+.board__column {
+    width: 16vw;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+}
+
+.board__column__columnHead_toDo {
+    background-color: #626161;
+    color: #dbdbdb;
+    padding: 19px;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+}
+
+.board__column__columnHead_plan {
+    background-color: #9d9d9d;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+}
+
+.board__column__columnHead_code {
+    background-color: #d2d2d2;
+    color: #464646;
+    padding: 5px;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+}
+
+.board__column__columnHead_create {
+    background-color: #e5e5e5;
+    color: #464646;
+    padding: 5px;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+}
+
+.board__column__columnHead_test {
+    background-color: #efefef;
+    color: #464646;
+    padding: 5px;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+}
+
+.board__column__columnHead_done {
+    background-color: #ffffff;
+    color: #464646;
+    padding: 19px;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+}
+
+.board__column_progress_progress {
+    background-color: #a6a1a1;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.board__column__content {
+    height: 50vh;
+    overflow: hidden;
+}
+
+.board__column__columnHead__item {
+    padding: 20px 10px;
+    fontSize: 0.8em;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+}
+.board__column__columnHead__item_urgent{
+    background-color: #fecdd5;
+}
+.board__column__columnHead__item_bug-fix{
+    background-color: #9cffef;
+}
+.board__column__columnHead__item_features{
+    background-color: #65cfffed;
+}
+.board__column_progress_list {
+    display: flex;
+}

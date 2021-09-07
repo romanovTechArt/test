@@ -1,0 +1,29 @@
+.header {
+    color: #a6a6a6;
+    margin-bottom: 40px;
+}
+
+.header__heading ::after {
+    content: "";
+    display: block;
+    width: 400px;
+    height: 2px;
+    background-color: #a6a6a6;
+    position: absolute;
+    left: calc(50% - 200px);
+}
+
+h2 {
+    margin-bottom: 5px;
+}
+
+.header__info {
+    display: flex;
+    justify-content: center;
+}
+
+.header__info_author {
+    border-right: 2px solid #a6a6a6;
+    margin-right: 5px;
+    padding-right: 5px;
+}

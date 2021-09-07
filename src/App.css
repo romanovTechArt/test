@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #626161;
+    font-family: -webkit-pictograph;
+}
+
+.App {
+    text-align: center;
+    margin: 20px;
+}

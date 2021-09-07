@@ -1,0 +1,43 @@
+.legend {
+    width: 30vw;
+    margin: 0 auto;
+    border: 1px solid #adacac;
+    border-radius: 10px;
+}
+
+.legend p {
+    margin: 10px;
+    text-align: initial;
+}
+
+.legend__list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.legend__list__item {
+    margin: 0 25px 25px;
+}
+
+.legend__list__item_urgent::before {
+    background-color: #fecdd5;
+}
+
+.legend__list__item_bug-fix::before {
+    background-color: #9cffef;
+}
+
+.legend__list__item_features::before {
+    background-color: #65cfffed;
+}
+
+.legend__list__item::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    position: relative;
+    top: 8px;
+    margin-right: 5px;
+}
